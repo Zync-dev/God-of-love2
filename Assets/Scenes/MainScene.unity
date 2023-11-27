@@ -3068,17 +3068,65 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1194895087012174219, guid: ac541b7ec4668de47b23b5c225a48b36, type: 3}
+      propertyPath: m_Size.x
+      value: 0.7242317
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194895087012174219, guid: ac541b7ec4668de47b23b5c225a48b36, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5535657
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194895087012174219, guid: ac541b7ec4668de47b23b5c225a48b36, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.06016445
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194895087012174219, guid: ac541b7ec4668de47b23b5c225a48b36, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.29220855
+      objectReference: {fileID: 0}
+    - target: {fileID: 1420874462132007232, guid: ac541b7ec4668de47b23b5c225a48b36, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1246934128}
+    - target: {fileID: 2427492586396388770, guid: ac541b7ec4668de47b23b5c225a48b36, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870587268429540756, guid: ac541b7ec4668de47b23b5c225a48b36, type: 3}
+      propertyPath: m_Radius
+      value: 0.3834504
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870587268429540756, guid: ac541b7ec4668de47b23b5c225a48b36, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.06999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870587268429540756, guid: ac541b7ec4668de47b23b5c225a48b36, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.4881041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4036106116169962476, guid: ac541b7ec4668de47b23b5c225a48b36, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4036106116169962476, guid: ac541b7ec4668de47b23b5c225a48b36, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4036106116169962476, guid: ac541b7ec4668de47b23b5c225a48b36, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5078537237484241576, guid: ac541b7ec4668de47b23b5c225a48b36, type: 3}
       propertyPath: m_Name
       value: Hitler
       objectReference: {fileID: 0}
     - target: {fileID: 8302684403585851982, guid: ac541b7ec4668de47b23b5c225a48b36, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.9042444
+      value: 8.66
       objectReference: {fileID: 0}
     - target: {fileID: 8302684403585851982, guid: ac541b7ec4668de47b23b5c225a48b36, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.0779186
+      value: -1.77
       objectReference: {fileID: 0}
     - target: {fileID: 8302684403585851982, guid: ac541b7ec4668de47b23b5c225a48b36, type: 3}
       propertyPath: m_LocalPosition.z
