@@ -2,33 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimpleEnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour
 {
     public Transform player;
-    public float speed = 3f;
-    public float stoppingDistance = 5f;
+    public float stopFollowingDistance = 10f;
+    public float chaseSpeed = 2f;
+    public float stoppingDistance = 2f;
+
+    public float attackspeed = 2f;
+    public GameObject SiegHeil;
+    public GameObject HitlerWeapon;
+
+    public GameObject HitlerHeil;
+    public GameObject HitlerNoHeil;
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
 
     private void Update()
     {
-        // Get the direction to the player
-        Vector3 direction = player.position - transform.position;
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        PlayerHealth PlayerHealth = player.gameObject.GetComponent<PlayerHealth>();
 
-        // Check if the player is within the stopping distance
-        if (direction.magnitude < stoppingDistance)
+        if (distanceToPlayer <= stopFollowingDistance && distanceToPlayer > stoppingDistance )
         {
-            // If so, stop moving
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            Vector2 moveDirection = (player.position - transform.position).normalized * chaseSpeed;
+            transform.Translate(moveDirection);
+
         }
-        else
+        else if (distanceToPlayer <= stoppingDistance + 0.5f && PlayerHealth.isPlayerDead != true)
         {
-            // Normalize the direction vector
-            direction.Normalize();
+            attackspeed -= Time.deltaTime;
 
-            // Calculate the desired velocity
-            Vector3 desiredVelocity = direction * speed;
-
-            // Set the Rigidbody's velocity to the desired velocity
-            GetComponent<Rigidbody>().velocity = desiredVelocity;
+            if (attackspeed >= 0.25 && attackspeed <= 0.35)
+            {
+                SiegHeil.SetActive(false);
+                HitlerHeil.SetActive(false);
+                HitlerNoHeil.SetActive(true);
+            }
+            if (attackspeed <= 0)
+            {
+                EnemyAttack();
+                attackspeed = 2f;
+            }
         }
+    }
+
+    public void EnemyAttack()
+    {   
+        SiegHeil.SetActive(true);
+        HitlerHeil.SetActive(true);
+        HitlerNoHeil.SetActive(false);
+
+        var Hagekors = Object.Instantiate(HitlerWeapon);
+        Hagekors.transform.position = this.transform.position;
     }
 }

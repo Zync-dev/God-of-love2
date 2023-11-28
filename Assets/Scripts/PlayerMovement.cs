@@ -17,20 +17,24 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
+        PlayerHealth PlayerHealth = this.gameObject.GetComponent<PlayerHealth>();
+
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        if(PlayerHealth.isPlayerDead != true)
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                jump = true;
+            }
 
-        if (Input.GetButtonDown("Jump"))
-        {
-            jump = true;
-        }
-
-        if (Input.GetButtonDown("Crouch"))
-        {
-            crouch = true;
-        }
-        else if (Input.GetButtonUp("Crouch"))
-        {
-            crouch = false;
+            if (Input.GetButtonDown("Crouch"))
+            {
+                crouch = true;
+            }
+            else if (Input.GetButtonUp("Crouch"))
+            {
+                crouch = false;
+            }
         }
 
     }
