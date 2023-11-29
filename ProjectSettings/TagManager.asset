@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Ground
   - HageKors
+  - PlayerProjectile
+  - Bombe
+  - LeftLeg
+  - RightLeg
+  - Hitler
+  - MaoZedong
   layers:
   - Default
   - TransparentFX

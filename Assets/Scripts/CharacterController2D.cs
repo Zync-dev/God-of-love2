@@ -63,6 +63,13 @@ public class CharacterController2D : MonoBehaviour
 
     public void Move(float move, bool crouch, bool jump)
     {
+        GameObject LeftLeg = GameObject.FindGameObjectWithTag("LeftLeg");
+        GameObject RightLeg = GameObject.FindGameObjectWithTag("RightLeg");
+        Animator LeftLegAnim = LeftLeg.GetComponent<Animator>();
+        Animator RightLegAnim = RightLeg.GetComponent<Animator>();
+
+        LeftLegAnim.Play("Left_leg");
+        RightLegAnim.Play("Right_leg");
         // If crouching, check to see if the character can stand up
         if (!crouch)
         {
@@ -115,12 +122,16 @@ public class CharacterController2D : MonoBehaviour
             if (move > 0 && !m_FacingRight)
             {
                 // ... flip the player.
+                PlayerAttack playerAttack = GetComponent<PlayerAttack>();
+                playerAttack.FlipShootingDirection(true);
                 Flip();
             }
             // Otherwise if the input is moving the player left and the player is facing right...
             else if (move < 0 && m_FacingRight)
             {
                 // ... flip the player.
+                PlayerAttack playerAttack = GetComponent<PlayerAttack>();
+                playerAttack.FlipShootingDirection(false);
                 Flip();
             }
         }

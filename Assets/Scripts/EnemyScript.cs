@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -9,16 +11,29 @@ public class EnemyAI : MonoBehaviour
     public float chaseSpeed = 2f;
     public float stoppingDistance = 2f;
 
-    public float attackspeed = 2f;
+    public float defaultattackspeed = 1f;
+    float attackspeed = 1f;
     public GameObject SiegHeil;
     public GameObject HitlerWeapon;
 
     public GameObject HitlerHeil;
     public GameObject HitlerNoHeil;
 
+    AudioSource SiegHeilAudio;
+
+    public float EnemyHealth = 100f;
+
+    public Slider EnemyHealthBar;
+    public TMP_Text EnemyHealthTXT;
+
+    public GameObject DamageText;
+
+    public GameObject EnemyHitParticle;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        SiegHeilAudio = this.gameObject.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -45,7 +60,7 @@ public class EnemyAI : MonoBehaviour
             if (attackspeed <= 0)
             {
                 EnemyAttack();
-                attackspeed = 2f;
+                attackspeed = defaultattackspeed;
             }
         }
     }
@@ -56,7 +71,40 @@ public class EnemyAI : MonoBehaviour
         HitlerHeil.SetActive(true);
         HitlerNoHeil.SetActive(false);
 
+        SiegHeilAudio.Play();
         var Hagekors = Object.Instantiate(HitlerWeapon);
         Hagekors.transform.position = this.transform.position;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "PlayerProjectile")
+        {
+            var particleSystem = Instantiate(EnemyHitParticle);
+            ParticleSystem ParticleSystemComponent = particleSystem.GetComponent<ParticleSystem>();
+            particleSystem.transform.position = this.transform.position;
+            ParticleSystemComponent.Play();
+
+            EnemyHealth -= 25f;
+
+            EnemyHealthBar.value = EnemyHealth;
+            EnemyHealthTXT.text = $"{EnemyHealth}/100";
+
+            SpawnDamageText();
+
+            Destroy(collision.gameObject);
+        }
+
+        if(EnemyHealth <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    public void SpawnDamageText()
+    {
+        GameObject DmgTXT = Instantiate(DamageText);
+
+        DmgTXT.transform.position = new Vector3(this.transform.position.x + Random.Range(0, 1), this.transform.position.y + Random.Range(0, 1), 1f);
     }
 }
